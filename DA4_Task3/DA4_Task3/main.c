@@ -1,4 +1,3 @@
-
 #define F_CPU 8000000UL
 #include <avr/io.h>
 #include <util/delay.h>
@@ -34,9 +33,9 @@ while (1){
 	while ((ADCSRA & (1 << ADIF)) == 0); //check if ADIF is 1, if not stay here
 	ADCSRA |= (1 << ADIF); //set ADIF 1
 	temp = ADC; //read conversion from ADCH register
-	//divide = 1/1023;
+	//divide = 1/1023 = .000977517;
 	temp = 1800*(1-(0.000977517*temp));
-	OCR1A = temp+500;
+	OCR1A = temp+400;
 	Wait();
 }
 }
